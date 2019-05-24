@@ -7,15 +7,13 @@ import accelrecog.globalListener_actor.GlobalListener;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Shortcut {
     GlobalListener listener;
     Actor robot;
     ArrayList<ActionR> myActions = new ArrayList<>();
+    private Interface tempGUI;
     public Shortcut(GlobalListener globalListener){
         listener = globalListener;
     }
@@ -43,7 +41,7 @@ public class Shortcut {
             }
         }
     }
-    public void startRecord(){
+    public void startRecord(Interface GUI){
         try {
             GlobalScreen.registerNativeHook();
         } catch (NativeHookException e) {
@@ -52,6 +50,8 @@ public class Shortcut {
         listener.userActions.clear();
         listener.myShortCut=this;
         System.out.println("starting macro recording");
+        GUI.desactivate();
+        tempGUI = GUI;
     }
     public void stopRecord(){
         myActions = new ArrayList<>(listener.userActions.size());
@@ -72,5 +72,6 @@ public class Shortcut {
 
         System.out.println("Stopping macro recording");
         GlobalListener.closeListeners();
+        tempGUI.activate();
     }
 }
