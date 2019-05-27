@@ -19,6 +19,7 @@ public class Interface extends JFrame implements ActionListener {
     private DefaultListModel listOfGest = new DefaultListModel();
 
     public char isLearning = 't';
+    public String userChoice;
     public String dataName;
     public boolean activated = true;
 
@@ -95,6 +96,9 @@ public class Interface extends JFrame implements ActionListener {
             setTest();
         } else if (e.getSource() == learn) {
             String potName = JOptionPane.showInputDialog("Enter Name");
+            JComboBox optionList = new JComboBox(new String[] {"MACRO","COMMAND"});
+            JOptionPane.showMessageDialog(null, optionList, "Choose which", JOptionPane.QUESTION_MESSAGE);
+            userChoice = (String) optionList.getSelectedItem();
             if (!alreadyExists(potName)) {
                 test.setEnabled(true);
                 learn.setEnabled(false);

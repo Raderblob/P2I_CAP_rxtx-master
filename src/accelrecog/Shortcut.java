@@ -7,6 +7,9 @@ import accelrecog.globalListener_actor.GlobalListener;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Shortcut {
@@ -38,6 +41,28 @@ public class Shortcut {
                 case MOUSERELEASE:
                     robot.mouseRelease(myActions.get(i).code);
                     break;
+                case COMMAND:
+                    Runtime rn = Runtime.getRuntime();
+                    Process pr;
+                    try {
+                        pr = rn.exec(myActions.get(i).cmd);
+                        new Thread(() -> {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+                            String line = null;
+
+                            try {
+                                while ((line = input.readLine()) != null)
+                                    System.out.println(line);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }).start();
+
+                        pr.waitFor();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         }
     }
@@ -52,6 +77,12 @@ public class Shortcut {
         System.out.println("starting macro recording");
         GUI.desactivate();
         tempGUI = GUI;
+    }
+
+    public void newCmd(String code){
+        myActions = new ArrayList<>();
+        myActions.add(new ActionR(code));
+        GlobalListener.closeListeners();
     }
     public void stopRecord(){
         myActions = new ArrayList<>(listener.userActions.size());

@@ -3,6 +3,7 @@ import accelrecog.*;
 import accelrecog.globalListener_actor.GlobalListener;
 import com.sun.deploy.panel.ControlPanel;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -72,7 +73,11 @@ public class Main {
                     switch (accelUI.isLearning) {
                         case 'g':
                             Gesture newGesture = new Gesture(myConnexion.rawDataArr(), accelUI.dataName + "", myListener);
-                            newGesture.myShortCut.startRecord(accelUI);
+                            if(accelUI.userChoice.equals("MACRO")){
+                                newGesture.myShortCut.startRecord(accelUI);
+                            }else{
+                                newGesture.myShortCut.newCmd(JOptionPane.showInputDialog("Enter Command"));
+                            }
                             history.add(newGesture);
                             for (Gesture dS : history) {
                                 for (int i = 0; i < dS.mySets.size(); i++) {
