@@ -1,6 +1,5 @@
 package accelrecog;
 
-
 public class BlueTooth {
 
     private long milisLastReceived = 0;

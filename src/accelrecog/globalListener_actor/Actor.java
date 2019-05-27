@@ -12,7 +12,7 @@ public class Actor {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        robot.setAutoDelay(40);
+        robot.setAutoDelay(300);
         robot.setAutoWaitForIdle(true);
     }
 

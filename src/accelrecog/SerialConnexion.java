@@ -15,7 +15,7 @@ public class SerialConnexion {
     private OutputStream out;
     private SerialReader mysr;
 
-    void connect(String portName) throws Exception {
+    public void connect(String portName) throws Exception {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
         if (portIdentifier.isCurrentlyOwned()) {
             System.out.println("Error: Port is currently in use");
