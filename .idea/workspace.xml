@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2658ef5-2315-4da9-97bb-7114d1fe5025" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/accelrecog/GraphicDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/RXTXcomm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/RXTXcomm.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rxtxParallel.dll" beforeDir="false" afterPath="$PROJECT_DIR$/rxtxParallel.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rxtxSerial.dll" beforeDir="false" afterPath="$PROJECT_DIR$/rxtxSerial.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accelrecog/Gesture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accelrecog/Gesture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accelrecog/GraphicDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accelrecog/GraphicDisplay.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +19,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+            <state relative-caret-position="255">
+              <caret line="15" column="83" selection-start-line="15" selection-start-column="83" selection-end-line="15" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,12 +40,10 @@
       <file leaf-file-name="Interface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/accelrecog/Interface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-459">
-              <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="323">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2570#2818#0" expanded="true" />
-                <element signature="e#2817#2818#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,8 +52,8 @@
       <file leaf-file-name="GraphicDisplay.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/accelrecog/GraphicDisplay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="50" column="24" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+            <state relative-caret-position="408">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,12 +64,10 @@
       <file leaf-file-name="Gesture.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/accelrecog/Gesture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="340">
               <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,8 +85,8 @@
       <file leaf-file-name="DetectionMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/camerarecog/DetectionMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="69" lean-forward="true" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
+            <state relative-caret-position="289">
+              <caret line="30" column="69" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -229,9 +221,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -363,12 +355,21 @@
       <workItem from="1558699602873" duration="11928000" />
       <workItem from="1558960265951" duration="597000" />
       <workItem from="1559295282417" duration="588000" />
-      <workItem from="1559296755709" duration="3851000" />
+      <workItem from="1559296755709" duration="3911000" />
+      <workItem from="1559308376076" duration="3935000" />
     </task>
+    <task id="LOCAL-00001" summary="graphics display stat">
+      <created>1559303755156</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559303755156</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84046000" />
+    <option name="totallyTimeSpent" value="88041000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -410,6 +411,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="graphics display stat" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphics display stat" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="9" />
@@ -446,8 +451,6 @@
           <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -488,8 +491,6 @@
           <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -623,9 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -697,8 +695,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/camerarecog/DetectionMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="69" lean-forward="true" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
+        <state relative-caret-position="289">
+          <caret line="30" column="69" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -707,12 +705,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/accelrecog/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-459">
-          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="33" />
+        <state relative-caret-position="323">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2570#2818#0" expanded="true" />
-            <element signature="e#2817#2818#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -726,20 +722,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/accelrecog/Gesture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="340">
           <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        <state relative-caret-position="255">
+          <caret line="15" column="83" selection-start-line="15" selection-start-column="83" selection-end-line="15" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -748,8 +742,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/accelrecog/GraphicDisplay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="50" column="24" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+        <state relative-caret-position="408">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

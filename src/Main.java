@@ -13,7 +13,7 @@ public class Main {
     static SerialConnexion myConnexion;
 
     public static void main(String[] args) {
-        (new GraphicDisplay(new Gesture(),new Gesture())).setVisible(true);
+        (new GraphicDisplay(new Gesture().mySets.get(0),new Gesture().mySets.get(0))).setVisible(true);
 
         GlobalListener myListener = new GlobalListener();
         BlueTooth myBlueTooth = new BlueTooth();
@@ -95,6 +95,7 @@ public class Main {
                             if(sel != null) {
                                 sel.myShortCut.run();
                                 System.out.println("matches with gesture " + sel.myName);
+                                (new GraphicDisplay(dataTotest,sel.mySets.get(0))).setVisible(true);
                             }else{
                                 System.out.println("No recorded history");
                             }
