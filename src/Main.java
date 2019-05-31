@@ -13,6 +13,8 @@ public class Main {
     static SerialConnexion myConnexion;
 
     public static void main(String[] args) {
+        (new GraphicDisplay(new Gesture(),new Gesture())).setVisible(true);
+
         GlobalListener myListener = new GlobalListener();
         BlueTooth myBlueTooth = new BlueTooth();
         myConnexion = new SerialConnexion();

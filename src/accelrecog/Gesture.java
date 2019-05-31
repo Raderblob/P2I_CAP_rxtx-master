@@ -1,6 +1,7 @@
 package accelrecog;
 
 import accelrecog.globalListener_actor.GlobalListener;
+import org.opencv.core.Mat;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,6 +14,15 @@ public class Gesture {
         myName = n;
         mySets.add(new DataSet(data,n+"0"));
         myShortCut = new Shortcut(globalListener);
+    }
+
+    public Gesture(){
+        myName ="";
+        ArrayList<Data> data = new ArrayList<>();
+        for(int i = 0;i< Math.random()*10000;i++){
+            data.add(new Data(Math.random(),Math.random(),Math.random(),(byte)(Math.random()*2),(byte)(Math.random()*2),(byte)(Math.random()*2)));
+        }
+        mySets.add(new DataSet(data,"0"));
     }
 
     public void reinforce(ArrayList<Data> data){
