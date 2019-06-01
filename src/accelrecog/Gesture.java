@@ -14,6 +14,11 @@ public class Gesture {
         mySets.add(new DataSet(data,n+"0"));
         myShortCut = new Shortcut(globalListener);
     }
+    public Gesture(LinkedList<DataSet> data, String myName, Shortcut shortcut){
+        this.myName = myName;
+        mySets = data;
+        myShortCut = shortcut;
+    }
 
     public void reinforce(ArrayList<Data> data){
         mySets.add(new DataSet(data,myName + mySets.size()));

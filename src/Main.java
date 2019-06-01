@@ -20,7 +20,7 @@ public class Main {
 
 
         try {
-            myConnexion.connect("COM6");
+            myConnexion.connect("COM8");
         } catch (Exception e) {
             e.printStackTrace();
         }
