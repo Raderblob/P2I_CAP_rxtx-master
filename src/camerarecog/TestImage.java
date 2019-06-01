@@ -1,22 +1,31 @@
-import camerarecog.DetectionMain;
-import camerarecog.VisualizationWindow;
-import camerarecog.interrogBD;
+package camerarecog;
+
+
+
+
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.awt.*;
+import javax.swing.*;
+//import javax.swing.Timer;
+import javax.swing.border.Border;
+
+
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.awt.event.*;
 
-//import javax.swing.Timer;
 
-public class ControlCenter extends JFrame implements ActionListener {
+public class TestImage extends JFrame implements ActionListener {
 
     private JPanel  status, configuration, settings;
     private JButton test;
@@ -29,9 +38,7 @@ public class ControlCenter extends JFrame implements ActionListener {
     private JScrollPane scrollPane;
     private JCheckBox checkHandFollowed;
     private JTextField chooseUserName;
-    private JPanel content;
-   // private Timer timer;
-
+    private JLabel content;
     private boolean followed;
 
     private boolean arduinoConnected;
@@ -42,42 +49,38 @@ public class ControlCenter extends JFrame implements ActionListener {
     private FileWriter fwFileCreation;
     private FileReader frFileCreation;
 
-    private File userNames; // un file avec le nom de tous les utilisateurs
-    private File userFile; // un fle avec pour chaque utilisateur ses caractéristiques
-
     private VisualizationWindow camPanel;
     private DetectionMain hand;
-     private interrogBD database;
-    // private fenetreAccelerometre acceleroPanel;
-     public accelrecog.BlueTooth bluetoothPannel;
-    // private fenetreConnexion connexionPanel;
+    public accelrecog.BlueTooth bluetoothPannel;
+
+    private interrogBD baseDonnee;
+    private String actualUser = "";
+
+
+
 
 
     public static void main(String[] args) throws IOException {
 
-        ControlCenter c = new ControlCenter();
-
+    TestImage c = new TestImage();
 
     }
 
 
-    public ControlCenter() throws IOException {
+    public TestImage() throws IOException {
+        setLayout(null);
+        content = new JLabel();
+        content.setIcon(new ImageIcon(getClass().getResource("imageFond.png")));
+        content.setBounds(0,0,855,597);
 
-       // Image background = Toolkit.getDefaultToolkit().createImage("imageFond.png");
-        ImageIcon back= new ImageIcon("imageFondJPG.jpg");
-        content= new JPanel();
 
-        JLabel background= new JLabel(back);
-     //   background.setBounds(20,20, 40,40);
+        this.add(content);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-      //  content.add(background);
-      //  background.setVisible(true);
+        this.setSize(857, 597);
+        this.setResizable(false);
 
-        //back.setIcon(back);
-
-        int delay = 1000; //milliseconds
-
-        hand= new DetectionMain();
+        hand = new DetectionMain();
         hand.getHandCoordinates();
 
         titleFont = new Font("Arial", Font.PLAIN, 24);
@@ -91,12 +94,14 @@ public class ControlCenter extends JFrame implements ActionListener {
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
+        String[] list = (String[]) baseDonnee.recupererUsers().toArray();
+        usersList = new JList<String>(list);
         scrollPane = new JScrollPane(usersList);
         Border sepBorder = BorderFactory.createEmptyBorder(10, 0, 10, 0);
 
-        content.setLayout(new BoxLayout(content, SwingConstants.HORIZONTAL));
 
+
+        content.setLayout(null);
 
         //Pane holding status
         Border statusBorder = BorderFactory.createEmptyBorder(10, 5, 10, 5);
@@ -104,11 +109,9 @@ public class ControlCenter extends JFrame implements ActionListener {
         status = new JPanel();
         status.setLayout(new BoxLayout(status, BoxLayout.Y_AXIS));
         status.setBorder(interMenu);
+        status.setOpaque(false);
+        status.setBounds(0,240, 281,597);
 
-        statusLabel = new JLabel("Statut de la connexion");
-        statusLabel.setFont(titleFont);
-        status.add(statusLabel);
-        status.add(Box.createVerticalGlue());
 
         handFollowed = new JLabel("Suivi main ?");
         handFollowed.setForeground(Color.red);
@@ -128,29 +131,34 @@ public class ControlCenter extends JFrame implements ActionListener {
         camStatus.setAlignmentX(0.5f);
         camStatus.setBorder(statusBorder);
         status.add(camStatus);
+        //camStatus.setOpaque(false);
 
         status.add(Box.createVerticalGlue());
 
-        //Séparateur
+      /*  //Séparateur
         sep1 = new JSeparator(SwingConstants.VERTICAL);
         sep1.setBackground(Color.BLACK);
-        sep1.setBorder(sepBorder);
+        sep1.setBorder(sepBorder);*/
 
 
         //Pane holding configurations
         configuration = new JPanel();
         configuration.setLayout(new BoxLayout(configuration, BoxLayout.Y_AXIS));
         configuration.setBorder(interMenu);
+        configuration.setOpaque(false);
+        configuration.setBounds(281,150,281,597);
 
         configLabel = new JLabel("Configuration de l'utilisateur");
         configLabel.setFont(titleFont);
+        configLabel.setOpaque(false);
 
-        configuration.add(configLabel);
+        //
+        // configuration.add(configLabel);
         configuration.add(scrollPane);
-        configuration.add(Box.createVerticalGlue());
 
 
         JPanel boutonsConfig = new JPanel();
+        boutonsConfig.setOpaque(false);
 
 
         checkHandFollowed = new JCheckBox("Suivi de la main:  ");
@@ -184,34 +192,33 @@ public class ControlCenter extends JFrame implements ActionListener {
         settings = new JPanel();
         settings.setLayout(new BoxLayout(settings, BoxLayout.Y_AXIS));
         settings.setBorder(interMenu);
+        settings.setOpaque(false);
+        settings.setBounds(562,250,281,597);
 
-        settingsLabel = new JLabel("Paramètres");
-        settingsLabel.setFont(titleFont);
-        settings.add(settingsLabel);
 
-        settings.add(Box.createVerticalGlue());
 
         camSettings = new JButton("Paramètres caméra");
         camSettings.addActionListener(this);
         settings.add(camSettings);
-
-        settings.add(Box.createVerticalGlue());
-
+        settings.add(Box.createRigidArea(new Dimension(0,10)));
         accelSettings = new JButton("Paramètres accéléromètre");
         accelSettings.addActionListener(this);
+
         settings.add(accelSettings);
 
-        settings.add(Box.createVerticalGlue());
 
-        dBSettings = new JButton("Paramètres base de données");
-        dBSettings.addActionListener(this);
 
-        settings.add(Box.createVerticalGlue());
 
-        this.setContentPane(background);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setSize(13000, 5400);
+
+
+        content.add(status);
+        content.add(configuration);
+        content.add(settings);
+
+
+
         this.setVisible(true);
+
 
     }
 
@@ -225,49 +232,55 @@ public class ControlCenter extends JFrame implements ActionListener {
     }
 
 
-    public String[] readListUsers() throws Exception {
-        ArrayList<String> tmp = new ArrayList<String>();
-        Scanner scanner = new Scanner(userNames);
-        while (scanner.hasNextLine()) {
-            tmp.add(scanner.nextLine());
-        }
-        String[] ret = new String[tmp.size()];
-        for (int i = 0; i < tmp.size(); i++) {
-            ret[i] = tmp.get(i);
-        }
-        return ret;
+
+    public void newUser(int hue, String username, int saturation, int value) {
+
+
+    }
+
+    public void readUser(String username) {
+
+    }
+
+
+    public void eraseUser(String username) {
+
+    }
+
+
+    public void readListUsers() throws Exception {
+
     }
 
     public void actionPerformed(ActionEvent e) {
-        /*if (e.getSource() == addUser) {
-            newUser(hand.getHue(), chooseUserName.getText(), hand.getSatThresh(), hand.getValThresh());
+        if (e.getSource() == addUser) {
+            baseDonnee.insertUserSettings( chooseUserName.getText(), hand.readPreferences());
+            String[] list = (String[]) baseDonnee.recupererUsers().toArray();
+            usersList = new JList<String>(list);
+            repaint();
         }
         if (e.getSource() == deleteUser) {
-            eraseUser(usersList.getSelectedValue());
+            baseDonnee.deleteUserSettings(actualUser);
         }
-        if (e.getSource() == ) {
-            // settings for the database
-        }*/
         if (e.getSource() == accelSettings) {
             // settings for the accelerometer
         }
         if (e.getSource() == camSettings) { // settings for the camera
             VisualizationWindow cam = new VisualizationWindow(hand);
+            (new Thread(cam)).start();
             camStatus.setForeground(Color.green);
         }
         if (checkHandFollowed.isSelected()) { // suivi de la main
             followed = true;
             handFollowed.setForeground(Color.green);
+            hand.setPanic(false);
         }
         if (!checkHandFollowed.isSelected()) { // Arret du suivi de la main
             followed = false;
             handFollowed.setForeground(Color.red);
+            hand.setPanic(true);
         }
 
     }
 }
-
-
-
-
 
