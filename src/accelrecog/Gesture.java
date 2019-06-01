@@ -24,6 +24,9 @@ public class Gesture {
         }
         mySets.add(new DataSet(data,"0"));
     }
+    public Gesture(LinkedList<DataSet> a, String b){
+
+    }
 
     public void reinforce(ArrayList<Data> data){
         mySets.add(new DataSet(data,myName + mySets.size()));
