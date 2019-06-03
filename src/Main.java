@@ -134,7 +134,7 @@ public class Main {
         //  System.exit(0);
     }
 
-    private static Gesture getClosest(DataSet dataTotest) {
+    static private Gesture getClosest(DataSet dataTotest) {
         double minval = Double.MAX_VALUE;
         Gesture sel = null;
 
