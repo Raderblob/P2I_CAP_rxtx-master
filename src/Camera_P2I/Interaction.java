@@ -1,6 +1,4 @@
-package camerarecog;
-
-
+package Camera_P2I;
 
 import java.awt.*;
 import java.util.ArrayList;

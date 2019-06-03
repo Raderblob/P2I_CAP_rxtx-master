@@ -1,7 +1,6 @@
-package camerarecog;
+package Camera_P2I;
 
-
-
+import Camera_P2I.DetectionMain;
 
 
 import javax.swing.*;
@@ -13,6 +12,9 @@ import javax.swing.*;
 //import javax.swing.Timer;
 import javax.swing.border.Border;
 
+import Camera_P2I.DetectionMain;
+import Camera_P2I.VisualizationWindow;
+import accelrecog.BlueTooth;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,7 +29,7 @@ import java.awt.event.*;
 
 public class TestImage extends JFrame implements ActionListener {
 
-    private JPanel  status, configuration, settings;
+    private JPanel status, configuration, settings;
     private JButton test;
     private JLabel statusLabel, configLabel, settingsLabel, handFollowed, bluetoothStatus, camStatus;
     private JButton camSettings, accelSettings, dBSettings, addUser, deleteUser;
@@ -51,18 +53,15 @@ public class TestImage extends JFrame implements ActionListener {
 
     private VisualizationWindow camPanel;
     private DetectionMain hand;
-    public accelrecog.BlueTooth bluetoothPannel;
+    public BlueTooth bluetoothPannel;
 
     private interrogBD baseDonnee;
     private String actualUser = "";
 
 
-
-
-
     public static void main(String[] args) throws IOException {
 
-    TestImage c = new TestImage();
+        TestImage c = new TestImage();
 
     }
 
@@ -70,8 +69,8 @@ public class TestImage extends JFrame implements ActionListener {
     public TestImage() throws IOException {
         setLayout(null);
         content = new JLabel();
-        content.setIcon(new ImageIcon(getClass().getResource("imageFond.png")));
-        content.setBounds(0,0,855,597);
+        content.setIcon(new javax.swing.ImageIcon(getClass().getResource("imageFond.png")));
+        content.setBounds(0, 0, 855, 597);
 
 
         this.add(content);
@@ -94,11 +93,21 @@ public class TestImage extends JFrame implements ActionListener {
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        String[] list = (String[]) baseDonnee.recupererUsers().toArray();
-        usersList = new JList<String>(list);
+        String[] list = null;
+
+
+        try {
+            LinkedList<String> prefList = baseDonnee.recupererUsers();
+            list = (String[]) prefList.toArray();
+            usersList = new JList<String>(list);
+        } catch (Exception e) {
+            usersList = new JList<String>();
+
+        }
+
+
         scrollPane = new JScrollPane(usersList);
         Border sepBorder = BorderFactory.createEmptyBorder(10, 0, 10, 0);
-
 
 
         content.setLayout(null);
@@ -110,7 +119,7 @@ public class TestImage extends JFrame implements ActionListener {
         status.setLayout(new BoxLayout(status, BoxLayout.Y_AXIS));
         status.setBorder(interMenu);
         status.setOpaque(false);
-        status.setBounds(0,240, 281,597);
+        status.setBounds(0, 240, 281, 597);
 
 
         handFollowed = new JLabel("Suivi main ?");
@@ -146,7 +155,7 @@ public class TestImage extends JFrame implements ActionListener {
         configuration.setLayout(new BoxLayout(configuration, BoxLayout.Y_AXIS));
         configuration.setBorder(interMenu);
         configuration.setOpaque(false);
-        configuration.setBounds(281,150,281,597);
+        configuration.setBounds(281, 150, 281, 597);
 
         configLabel = new JLabel("Configuration de l'utilisateur");
         configLabel.setFont(titleFont);
@@ -193,28 +202,22 @@ public class TestImage extends JFrame implements ActionListener {
         settings.setLayout(new BoxLayout(settings, BoxLayout.Y_AXIS));
         settings.setBorder(interMenu);
         settings.setOpaque(false);
-        settings.setBounds(562,250,281,597);
-
+        settings.setBounds(562, 250, 281, 597);
 
 
         camSettings = new JButton("Paramètres caméra");
         camSettings.addActionListener(this);
         settings.add(camSettings);
-        settings.add(Box.createRigidArea(new Dimension(0,10)));
+        settings.add(Box.createRigidArea(new Dimension(0, 10)));
         accelSettings = new JButton("Paramètres accéléromètre");
         accelSettings.addActionListener(this);
 
         settings.add(accelSettings);
 
 
-
-
-
-
         content.add(status);
         content.add(configuration);
         content.add(settings);
-
 
 
         this.setVisible(true);
@@ -230,7 +233,6 @@ public class TestImage extends JFrame implements ActionListener {
             //texte camera devient rouge
         }
     }
-
 
 
     public void newUser(int hue, String username, int saturation, int value) {
@@ -254,7 +256,7 @@ public class TestImage extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addUser) {
-            baseDonnee.insertUserSettings( chooseUserName.getText(), hand.readPreferences());
+            baseDonnee.insertUserSettings(chooseUserName.getText(), hand.readPreferences());
             String[] list = (String[]) baseDonnee.recupererUsers().toArray();
             usersList = new JList<String>(list);
             repaint();

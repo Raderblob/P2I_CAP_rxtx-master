@@ -1,4 +1,4 @@
-package camerarecog;
+package Camera_P2I;
 
 import org.opencv.core.*;
 import org.opencv.core.Point;

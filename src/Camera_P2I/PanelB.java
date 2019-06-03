@@ -1,11 +1,7 @@
-package camerarecog;
+package Camera_P2I;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.LinkedList;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.io.File;
 
 public class PanelB extends JPanel {
 

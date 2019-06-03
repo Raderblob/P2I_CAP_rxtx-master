@@ -1,4 +1,4 @@
-package camerarecog;
+package Camera_P2I;
 
 import accelrecog.Data;
 import accelrecog.DataSet;
@@ -600,7 +600,7 @@ public class interrogBD {
 
         }
         catch(Exception e){
-            infoBox(e.getMessage(),"Erreur");
+           // infoBox(e.getMessage(),"Erreur");
 
         }
         return null;

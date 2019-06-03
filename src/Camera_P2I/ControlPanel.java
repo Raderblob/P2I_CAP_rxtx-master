@@ -1,22 +1,22 @@
-import camerarecog.DetectionMain;
-import camerarecog.VisualizationWindow;
-import camerarecog.interrogBD;
+package Camera_P2I;
 
-import javax.swing.*;
-import javax.swing.border.Border;
+import accelrecog.BlueTooth;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
+//import javax.swing.Timer;
+import javax.swing.border.Border;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.awt.event.*;
 
-//import javax.swing.Timer;
-
-public class ControlCenter extends JFrame implements ActionListener {
+public class ControlPanel extends JFrame implements ActionListener {
 
     private JPanel  status, configuration, settings;
     private JButton test;
@@ -49,19 +49,19 @@ public class ControlCenter extends JFrame implements ActionListener {
     private DetectionMain hand;
      private interrogBD database;
     // private fenetreAccelerometre acceleroPanel;
-     public accelrecog.BlueTooth bluetoothPannel;
+     public BlueTooth bluetoothPannel;
     // private fenetreConnexion connexionPanel;
 
 
     public static void main(String[] args) throws IOException {
 
-        ControlCenter c = new ControlCenter();
+        ControlPanel c = new ControlPanel();
 
 
     }
 
 
-    public ControlCenter() throws IOException {
+    public ControlPanel() throws IOException {
 
        // Image background = Toolkit.getDefaultToolkit().createImage("imageFond.png");
         ImageIcon back= new ImageIcon("imageFondJPG.jpg");
@@ -239,15 +239,13 @@ public class ControlCenter extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        /*if (e.getSource() == addUser) {
-            newUser(hand.getHue(), chooseUserName.getText(), hand.getSatThresh(), hand.getValThresh());
+        if (e.getSource() == addUser) {
+            database.insertUserSettings(chooseUserName.getText(), hand.readPreferences());
         }
         if (e.getSource() == deleteUser) {
-            eraseUser(usersList.getSelectedValue());
+            database.deleteUserSettings(usersList.getSelectedValue());
         }
-        if (e.getSource() == ) {
-            // settings for the database
-        }*/
+
         if (e.getSource() == accelSettings) {
             // settings for the accelerometer
         }

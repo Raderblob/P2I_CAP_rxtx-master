@@ -1,4 +1,4 @@
-package camerarecog;
+package Camera_P2I;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

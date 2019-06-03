@@ -1,7 +1,9 @@
 
+import Camera_P2I.TestImage;
 import accelrecog.*;
+import accelrecog.BlueTooth;
 import accelrecog.globalListener_actor.GlobalListener;
-import com.sun.deploy.panel.ControlPanel;
+import gnu.io.CommPortIdentifier;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,16 +15,19 @@ public class Main {
     static SerialConnexion myConnexion;
 
     public static void main(String[] args) {
-        (new GraphicDisplay(new Gesture().mySets.get(0),new Gesture().mySets.get(0))).setVisible(true);
-
+      //  (new GraphicDisplay(new Gesture().mySets.get(0),new Gesture().mySets.get(0))).setVisible(true);
         GlobalListener myListener = new GlobalListener();
         BlueTooth myBlueTooth = new BlueTooth();
         myConnexion = new SerialConnexion();
 
+        try {
+            new TestImage();
+        }catch (Exception e){
 
+        }
 
         try {
-            myConnexion.connect("COM6");
+            myConnexion.connect( listPorts()[0]);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,7 +134,7 @@ public class Main {
         //  System.exit(0);
     }
 
-    static private Gesture getClosest(DataSet dataTotest) {
+    private static Gesture getClosest(DataSet dataTotest) {
         double minval = Double.MAX_VALUE;
         Gesture sel = null;
 
@@ -142,6 +147,36 @@ public class Main {
             }
         }
         return sel;
+    }
+
+    static String[] listPorts()
+    {
+        LinkedList<String> ports = new LinkedList<>();
+        java.util.Enumeration<CommPortIdentifier> portEnum = CommPortIdentifier.getPortIdentifiers();
+        while ( portEnum.hasMoreElements() )
+        {
+            CommPortIdentifier portIdentifier = portEnum.nextElement();
+            ports.add(portIdentifier.getName());
+        }
+        return ports.toArray(new String[0] );
+    }
+    static String getPortTypeName ( int portType )
+    {
+        switch ( portType )
+        {
+            case CommPortIdentifier.PORT_I2C:
+                return "I2C";
+            case CommPortIdentifier.PORT_PARALLEL:
+                return "Parallel";
+            case CommPortIdentifier.PORT_RAW:
+                return "Raw";
+            case CommPortIdentifier.PORT_RS485:
+                return "RS485";
+            case CommPortIdentifier.PORT_SERIAL:
+                return "Serial";
+            default:
+                return "unknown type";
+        }
     }
 
 }
