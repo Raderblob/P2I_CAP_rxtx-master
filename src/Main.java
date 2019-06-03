@@ -19,11 +19,16 @@ public class Main {
         GlobalListener myListener = new GlobalListener();
         BlueTooth myBlueTooth = new BlueTooth();
         myConnexion = new SerialConnexion();
+        TestImage adelePanel;
+        Interface accelUI = new Interface(history);
+
 
         try {
-            new TestImage();
+            Thread.sleep(500);
+            adelePanel =  new TestImage();
+            Thread.sleep(500);
         }catch (Exception e){
-
+            adelePanel = null;
         }
 
         try {
@@ -33,8 +38,8 @@ public class Main {
         }
 
 
-        Interface accelUI = new Interface(history);
-        accelUI.setVisible(true);
+        adelePanel.bluetoothPanel = myBlueTooth;
+        adelePanel.accelGUI = accelUI;
 
 
 
@@ -44,7 +49,7 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            adelePanel.updateConnexion();
             if (myConnexion.dataIncoming()) {
                 accelUI.setState("Reading data");
                 while (!myConnexion.dataEnding()) {
@@ -130,7 +135,7 @@ public class Main {
                 }
             }
 
-        } while (true);
+        } while (false);
         //  System.exit(0);
     }
 

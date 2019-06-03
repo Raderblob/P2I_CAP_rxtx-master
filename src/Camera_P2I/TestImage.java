@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import Camera_P2I.DetectionMain;
 import Camera_P2I.VisualizationWindow;
 import accelrecog.BlueTooth;
+import accelrecog.Interface;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -43,20 +44,17 @@ public class TestImage extends JFrame implements ActionListener {
     private JLabel content;
     private boolean followed;
 
-    private boolean arduinoConnected;
-    private boolean connexionEstablished;
-    private boolean cameraWorking;
-    private FileWriter fw;
-    private FileReader fr;
-    private FileWriter fwFileCreation;
-    private FileReader frFileCreation;
 
-    private VisualizationWindow camPanel;
+    //private boolean connexionEstablished;
+
+
+    //private VisualizationWindow camPanel;
     private DetectionMain hand;
-    public BlueTooth bluetoothPannel;
+    public BlueTooth bluetoothPanel;
 
     private interrogBD baseDonnee;
     private String actualUser = "";
+    public Interface accelGUI;
 
 
     public static void main(String[] args) throws IOException {
@@ -94,18 +92,16 @@ public class TestImage extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         String[] list = null;
-
-
         try {
-            LinkedList<String> prefList = baseDonnee.recupererUsers();
-            list = (String[]) prefList.toArray();
-            usersList = new JList<String>(list);
+            list = (String[]) baseDonnee.recupererUsers().toArray();
         } catch (Exception e) {
-            usersList = new JList<String>();
 
         }
 
-
+        if (list != null)
+            usersList = new JList<String>(list);
+        else
+            usersList = new JList<String>();
         scrollPane = new JScrollPane(usersList);
         Border sepBorder = BorderFactory.createEmptyBorder(10, 0, 10, 0);
 
@@ -225,34 +221,14 @@ public class TestImage extends JFrame implements ActionListener {
 
     }
 
-    public void cameraState() {
-        cameraWorking = hand.cameraIsOpened();
-        if (cameraWorking == true) {
-            // texte camera devient vert
-        } else {
-            //texte camera devient rouge
-        }
+    public void updateConnexion(){
+       if( bluetoothPanel.getBluetoothState()){
+           bluetoothStatus.setForeground(Color.GREEN);
+       }else{
+           bluetoothStatus.setForeground(Color.RED);
+       }
     }
 
-
-    public void newUser(int hue, String username, int saturation, int value) {
-
-
-    }
-
-    public void readUser(String username) {
-
-    }
-
-
-    public void eraseUser(String username) {
-
-    }
-
-
-    public void readListUsers() throws Exception {
-
-    }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addUser) {
@@ -262,10 +238,17 @@ public class TestImage extends JFrame implements ActionListener {
             repaint();
         }
         if (e.getSource() == deleteUser) {
-            baseDonnee.deleteUserSettings(actualUser);
+            // baseDonnee.deleteUserSettings(actualUser);
         }
         if (e.getSource() == accelSettings) {
-            // settings for the accelerometer
+            try {
+            Thread.sleep(1000);
+            accelGUI.setVisible(true);
+
+                Thread.sleep(1000);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
         }
         if (e.getSource() == camSettings) { // settings for the camera
             VisualizationWindow cam = new VisualizationWindow(hand);

@@ -381,7 +381,7 @@ public class interrogBD {
             for (int j =0; j<reinforcements.length; j++){
                 mySets.add(recupererDataset(idGesture, reinforcements[j]));
             }
-           Gesture gesture = new Gesture(mySets, nomGeste);
+           Gesture gesture = new Gesture(mySets, nomGeste,null);
             return gesture;
 
 
@@ -390,7 +390,7 @@ public class interrogBD {
             infoBox(e.getMessage(),"Erreur");
 
         }
-        return new Gesture(new LinkedList<DataSet>(), "null");
+        return new Gesture(new LinkedList<DataSet>(), "null",null);
     }
 
     public  LinkedList<Gesture> recupererHistory(String idUser) {
