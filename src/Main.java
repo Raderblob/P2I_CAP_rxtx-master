@@ -23,9 +23,10 @@ public class Main {
         TestImage adelePanel;
         Interface accelUI = new Interface(history);
         try {
-            adelePanel =  new TestImage();
+            adelePanel =  new TestImage(accelUI,myBlueTooth);
         }catch (Exception e){
             adelePanel = null;
+           e.printStackTrace();
         }
 
         try {
@@ -35,8 +36,6 @@ public class Main {
         }
 
 
-        adelePanel.bluetoothPanel = myBlueTooth;
-        adelePanel.accelGUI = accelUI;
 
 
 
@@ -132,7 +131,7 @@ public class Main {
                 }
             }
 
-        } while (false);
+        } while (true);
 
         //  System.exit(0);
     }

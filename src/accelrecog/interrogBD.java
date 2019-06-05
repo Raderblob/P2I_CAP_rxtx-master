@@ -1,8 +1,5 @@
-package Camera_P2I;
+package accelrecog;
 
-import accelrecog.Data;
-import accelrecog.DataSet;
-import accelrecog.Gesture;
 import accelrecog.globalListener_actor.AType;
 import accelrecog.globalListener_actor.ActionR;
 

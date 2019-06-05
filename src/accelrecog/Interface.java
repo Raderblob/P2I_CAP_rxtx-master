@@ -1,5 +1,6 @@
 package accelrecog;
 
+import Camera_P2I.TestImage;
 import accelrecog.globalListener_actor.GlobalListener;
 import org.jnativehook.GlobalScreen;
 
@@ -23,7 +24,10 @@ public class Interface extends JFrame implements ActionListener {
     public String dataName;
     public boolean activated = true;
 
+    public TestImage mainPanel;
+
     private LinkedList<Gesture> allgest;
+
 
     public Interface(LinkedList<Gesture> aGesture) {
         super("Recog Interface");
@@ -88,6 +92,7 @@ public class Interface extends JFrame implements ActionListener {
             public void windowClosing(WindowEvent winEvt) {
                 GlobalListener.closeListeners();
                 System.out.println("Closing");
+                (new interrogBD()).saveHistory(allgest,mainPanel.actualUser);
                 System.exit(0);
             }
         });

@@ -53,18 +53,15 @@ public class TestImage extends JFrame implements ActionListener {
     public BlueTooth bluetoothPanel;
 
     private interrogBD baseDonnee;
-    private String actualUser = "";
+    public String actualUser = "";
     public Interface accelGUI;
 
 
-    public static void main(String[] args) throws IOException {
+    public TestImage(Interface aGUI,BlueTooth mBT) throws IOException {
+        accelGUI = aGUI;
+        bluetoothPanel = mBT;
+        accelGUI.mainPanel = this;
 
-        TestImage c = new TestImage();
-
-    }
-
-
-    public TestImage() throws IOException {
         setLayout(null);
         content = new JLabel();
         content.setIcon(new javax.swing.ImageIcon(getClass().getResource("imageFond.png")));
@@ -220,6 +217,8 @@ public class TestImage extends JFrame implements ActionListener {
 
 
     }
+
+
 
     public void updateConnexion(){
        if( bluetoothPanel.getBluetoothState()){
