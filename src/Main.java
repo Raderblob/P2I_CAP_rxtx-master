@@ -15,18 +15,15 @@ public class Main {
     static SerialConnexion myConnexion;
 
     public static void main(String[] args) {
+
       //  (new GraphicDisplay(new Gesture().mySets.get(0),new Gesture().mySets.get(0))).setVisible(true);
         GlobalListener myListener = new GlobalListener();
         BlueTooth myBlueTooth = new BlueTooth();
         myConnexion = new SerialConnexion();
         TestImage adelePanel;
         Interface accelUI = new Interface(history);
-
-
         try {
-            Thread.sleep(500);
             adelePanel =  new TestImage();
-            Thread.sleep(500);
         }catch (Exception e){
             adelePanel = null;
         }
@@ -136,6 +133,7 @@ public class Main {
             }
 
         } while (false);
+
         //  System.exit(0);
     }
 

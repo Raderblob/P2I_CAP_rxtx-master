@@ -241,14 +241,7 @@ public class TestImage extends JFrame implements ActionListener {
             // baseDonnee.deleteUserSettings(actualUser);
         }
         if (e.getSource() == accelSettings) {
-            try {
-            Thread.sleep(1000);
             accelGUI.setVisible(true);
-
-                Thread.sleep(1000);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
         }
         if (e.getSource() == camSettings) { // settings for the camera
             VisualizationWindow cam = new VisualizationWindow(hand);

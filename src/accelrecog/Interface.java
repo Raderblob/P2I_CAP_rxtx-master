@@ -13,7 +13,7 @@ import java.util.LinkedList;
 
 public class Interface extends JFrame implements ActionListener {
     private Panel accelSettings;
-    private JButton test, learn, reInforce, deleteMouvement;
+    private JButton test, learn, reInforce, deleteMouvement, closeWindow;
     private JLabel accelState;
     private JList learnedSets;
     private DefaultListModel listOfGest = new DefaultListModel();
@@ -73,6 +73,13 @@ public class Interface extends JFrame implements ActionListener {
         deleteMouvement.setEnabled(true);
         deleteMouvement.addActionListener(this);
         accelSettings.add(deleteMouvement);
+
+        closeWindow = new JButton("Close Settings");
+        closeWindow.setBackground(Color.RED);
+        closeWindow.setBounds(200,525,200,25);
+        closeWindow.setEnabled(true);
+        closeWindow.addActionListener(this);
+        accelSettings.add(closeWindow);
 
         this.add(accelSettings);
 
@@ -134,6 +141,8 @@ public class Interface extends JFrame implements ActionListener {
                 System.out.println("Nothing selected");
             }
             showGestures();
+        }else if(e.getSource()==closeWindow){
+            this.setVisible(false);
         }
 
     }
